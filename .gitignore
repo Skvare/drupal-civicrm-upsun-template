@@ -17,7 +17,6 @@
 # /config/sync
 
 # Standard Skvare gitignore entries:
-/web/sites/*/civicrm.settings.php
 services*.php
 /web/sites/*/civicrm/extensions/contrib/*
 !web/sites/*/civicrm/extensions/contrib/.gitkeep

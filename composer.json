@@ -48,6 +48,7 @@
         "drush/drush": "^13.0@beta",
         "mglaman/composer-drupal-lenient": "^1.0",
         "platformsh/config-reader": "^3",
+        "symfony/dotenv": "^7.3",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
     "conflict": {
@@ -55,6 +56,9 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "autoload": {
+        "files": ["load.environment.php"]
+    },
     "config": {
         "autoloader-suffix": "Drupal8",
         "allow-plugins": {
@@ -125,8 +129,8 @@
             ]
         },
         "civicrm-asset": {
-            "path": "web/libraries/civicrm/core",
-            "url": "/libraries/civicrm/core"
+            "path": "web/libraries/civicrm",
+            "url": "/libraries/civicrm"
         },
         "civicrm": {
             "extensions_install_path": "./web/sites/default/civicrm/extensions/contrib",
