@@ -1,0 +1,176 @@
+{
+    "name": "drupal/drupal-civicrm-upsun-template",
+    "description": "Drupal 11 + CiviCRM 6.4 with Drupal integration modules composer template",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://skvare.com",
+    "repositories": {
+        "drupal/civicrm_entity": {
+            "type": "vcs",
+            "url":  "https://github.com/eileenmcnaughton/civicrm_entity.git"
+        },
+        "drupal/webform_civicrm": {
+            "type": "vcs",
+            "url": "https://github.com/colemanw/webform_civicrm.git"
+        },
+        "drupal/civicrm_entity_leaflet": {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/project/civicrm_entity_leaflet"
+        },
+        "civicrm-extension-plugin": {
+           "type": "vcs",
+           "url":  "https://github.com/Skvare/civicrm-extension-plugin"
+        },
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    },
+    "require": {
+        "civicrm/civicrm-asset-plugin": "~1.1",
+        "civicrm/civicrm-core": "6.4.*",
+        "civicrm/civicrm-drupal-8": "6.4.*",
+        "civicrm/civicrm-extension-plugin": "^1.0",
+        "civicrm/civicrm-packages": "6.4.*",
+        "civicrm/cli-tools": "^2025.05",
+        "composer/installers": "^2.2",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/civicrm_drush": "^4.0@beta",
+        "drupal/civicrm_entity": "4.0.x-dev",
+        "drupal/civicrm_entity_leaflet": "^2",
+        "drupal/civicrm_form_builder_blocks": "^1.0@alpha",
+        "drupal/civicrm_reroute_mail": "^1.0",
+        "drupal/core-composer-scaffold": "^11.2",
+        "drupal/core-project-message": "^11.2",
+        "drupal/core-recommended": "^11.2",
+        "drupal/webform": "^6.3",
+        "drupal/webform_civicrm": "6.x-dev",
+        "drush/drush": "^13.0@beta",
+        "mglaman/composer-drupal-lenient": "^1.0",
+        "platformsh/config-reader": "^3",
+        "wikimedia/composer-merge-plugin": "^2.1"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "autoloader-suffix": "Drupal8",
+        "allow-plugins": {
+            "civicrm/civicrm-asset-plugin": true,
+            "civicrm/civicrm-extension-plugin": true,
+            "civicrm/composer-compile-plugin": true,
+            "civicrm/composer-downloads-plugin": true,
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "mglaman/composer-drupal-lenient": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "wikimedia/composer-merge-plugin": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "enable-patching": true,
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            }
+        },
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        },
+        "patches": {
+            "drupal/webform": {
+                "drush fix": "https://www.drupal.org/files/issues/2024-05-07/3445590_3.patch"
+            }
+        },
+        "merge-plugin": {
+            "include": [
+                "web/modules/contrib/webform/composer.libraries.json"
+            ]
+        },
+        "civicrm-asset": {
+            "path": "web/libraries/civicrm/core",
+            "url": "/libraries/civicrm/core"
+        },
+        "civicrm": {
+            "extensions_install_path": "./web/sites/default/civicrm/extensions/contrib",
+            "extensions": {
+                "uk.co.vedaconsulting.mosaico": {
+                    "url": "https://download.civicrm.org/extension/uk.co.vedaconsulting.mosaico/3.8.1752072010/uk.co.vedaconsulting.mosaico-3.8.1752072010.zip"
+                },
+                "org.civicrm.contactlayout": {
+                    "url": "https://lab.civicrm.org/extensions/contactlayout/-/archive/3.0.2/contactlayout-3.0.2.zip"
+                },
+                "org.civicrm.angularprofiles": {
+                    "url": "https://lab.civicrm.org/extensions/angularprofiles/-/archive/6.2.4/angularprofiles-6.2.4.zip"
+                },
+                "org.civicrm.module.cividiscount": {
+                    "url": "https://lab.civicrm.org/extensions/cividiscount/-/archive/3.9.0/cividiscount-3.9.0.zip"
+                },
+                "com.skvare.mosaicomigration": {
+                    "url": "https://github.com/Skvare/com.skvare.mosaicomigration/archive/refs/tags/1.4.zip"
+                }
+            }
+        },
+        "drupal-core-project-message": {
+            "include-keys": [
+                "homepage",
+                "support"
+            ],
+            "post-create-project-cmd-message": [
+                "<bg=blue;fg=white>                                                         </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
+                "<bg=blue;fg=white>                                                         </>",
+                "",
+                "<bg=yellow;fg=black>Next steps</>:",
+                "  * Install the site: https://www.drupal.org/docs/installing-drupal",
+                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
+                "  * Get support: https://www.drupal.org/support",
+                "  * Get involved with the Drupal community:",
+                "      https://www.drupal.org/getting-involved",
+                "  * Remove the plugin that prints this message:",
+                "      composer remove drupal/core-project-message"
+            ]
+        },
+        "drupal-lenient": {
+            "allowed-list": ["drupal/webform_civicrm"]
+        }
+    }
+}
