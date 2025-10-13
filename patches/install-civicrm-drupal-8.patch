@@ -1,0 +1,34 @@
+From 587eec0b6cfe797dca9925fda90c9b281d6f805a Mon Sep 17 00:00:00 2001
+From: Mark Hanna <mark@skvare.com>
+Date: Mon, 13 Oct 2025 15:03:42 -0600
+Subject: [PATCH] make way to install CiviCRM when civicrm.settings.php file
+ present
+
+---
+ civicrm.install | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/civicrm.install b/civicrm.install
+index d894ff8..c75ce08 100644
+--- a/civicrm.install
++++ b/civicrm.install
+@@ -21,11 +21,15 @@ function civicrm_install() {
+   }
+ 
+   $installed = $setup->checkInstalled();
+-  if ($installed->isSettingInstalled() || $installed->isDatabaseInstalled()) {
+-    throw new \Exception("CiviCRM appears to have already been installed. Skipping full installation.");
++  if ($installed->isDatabaseInstalled()) {
++     throw new \Exception("CiviCRM appears to have already been installed. Skipping full installation.");
++  }
++  if ($installed->isSettingInstalled()) {
++    $setup->installFiles(FALSE);
++  }
++  else {
++    $setup->installFiles();
+   }
+-
+-  $setup->installFiles();
+   $setup->installDatabase();
+ }
+ 

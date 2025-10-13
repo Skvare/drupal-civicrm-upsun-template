@@ -1,0 +1,57 @@
+From 33d566d4b4b99a98ffe65e55568609f4f1d9aa7d Mon Sep 17 00:00:00 2001
+From: Mark Hanna <mark@skvare.com>
+Date: Mon, 13 Oct 2025 15:07:35 -0600
+Subject: [PATCH] allow option to not create civicrm.settings.php on install
+
+---
+ .../installFiles/InstallSettingsFile.civi-setup.php |  5 ++++-
+ setup/src/Setup.php                                 | 13 +++++++++++--
+ 2 files changed, 15 insertions(+), 3 deletions(-)
+
+diff --git a/setup/plugins/installFiles/InstallSettingsFile.civi-setup.php b/setup/plugins/installFiles/InstallSettingsFile.civi-setup.php
+index 7eab4536de5c..779be7de8ce7 100644
+--- a/setup/plugins/installFiles/InstallSettingsFile.civi-setup.php
++++ b/setup/plugins/installFiles/InstallSettingsFile.civi-setup.php
+@@ -85,6 +85,9 @@
+       [$m->srcPath, 'templates', 'CRM', 'common', 'civicrm.settings.php.template']
+     );
+     $str = \Civi\Setup\SettingsUtil::evaluate($tplPath, $params);
+-    file_put_contents($m->settingsPath, $str);
++
++    if (!$m->getField('doNotCreateSettingsFile', 'value')) {
++      file_put_contents($m->settingsPath, $str);
++    }
+ 
+   }, \Civi\Setup::PRIORITY_LATE);
+diff --git a/setup/src/Setup.php b/setup/src/Setup.php
+index 1d7ead79db97..1917558163c2 100644
+--- a/setup/src/Setup.php
++++ b/setup/src/Setup.php
+@@ -197,16 +197,25 @@ public function checkInstalled() {
+   /**
+    * Create the settings file.
+    *
++   * @param bool $create
++   *   Flag to create civicrm.settings.php
++   *
+    * @return \Civi\Setup\Event\InstallFilesEvent
+    */
+-  public function installFiles() {
++  public function installFiles($create = TRUE) {
+     if ($this->pendingAction !== NULL) {
+       throw new InitException(sprintf("Cannot begin action %s. Already executing %s.", __FUNCTION__, $this->pendingAction));
+     }
+     $this->pendingAction = __FUNCTION__;
+ 
+     try {
+-      $event = new InstallFilesEvent($this->getModel());
++      $model = $this->getModel();
++      $model->addField([
++        'name' => 'doNotCreateSettingsFile',
++        'type' => 'bool',
++        'value' => !$create,
++      ]);
++      $event = new InstallFilesEvent($model);
+       return $this->getDispatcher()->dispatch('civi.setup.installFiles', $event);
+     }
+     finally {

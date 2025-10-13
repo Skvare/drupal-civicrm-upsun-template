@@ -121,6 +121,12 @@
         "patches": {
             "drupal/webform": {
                 "drush fix": "https://www.drupal.org/files/issues/2024-05-07/3445590_3.patch"
+            },
+            "civicrm/civicrm-drupal-8": {
+                "install patch": "./patches/install-civicrm-drupal-8.patch"
+            },
+            "civicrm/civicrm-core": {
+                "install core patch": "./patches/install-civicrm-core.patch"
             }
         },
         "merge-plugin": {
