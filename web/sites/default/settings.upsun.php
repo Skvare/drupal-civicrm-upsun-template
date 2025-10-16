@@ -201,6 +201,9 @@ if ($platformsh->inRuntime()) {
   // Set the deployment identifier, which is used by some Drupal cache systems.
   $settings['deployment_identifier'] = $settings['deployment_identifier'] ?? $platformsh->treeId;
 }
+else {
+  $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT');
+}
 
 // The 'trusted_hosts_pattern' setting allows an admin to restrict the Host header values
 // that are considered trusted.  If an attacker sends a request with a custom-crafted Host
