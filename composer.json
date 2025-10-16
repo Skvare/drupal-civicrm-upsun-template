@@ -181,6 +181,8 @@
         },
         "drupal-lenient": {
             "allowed-list": ["drupal/webform_civicrm"]
-        }
+        },
+        "compile-whitelist": ["civicrm/civicrm-core", "civicrm/composer-compile-lib"],
+        "compile-mode": "all"
     }
 }
