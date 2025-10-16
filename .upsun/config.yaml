@@ -4,7 +4,7 @@
 # See https://docs.platform.sh/configuration/app.html
 
 # The name of this app. Must be unique within a project.
-applications: 
+applications:
   drupal:
     type: 'composable:25.05'
     stack:
@@ -16,7 +16,6 @@ applications:
             - apcu
             - blackfire
             - imagick
-      - clamav
       - gnupg
       - patch
       - duplicity
@@ -36,39 +35,17 @@ applications:
       env:
         # Skip automatic config import
         SKIP_CONFIG_IMPORT: 1
-        CONFIG_READONLY: 'On'
-        # Disable email rerouting by default. Turn 'On' in dev/staging.
-        REROUTE_EMAIL: 'Off'
         ENABLE_SSL: 1
         # Set caching to Redis by default. Can be changed to 'ArrayCache' in dev/staging.
         CIVICRM_CACHING_TYPE: 'Redis'
-        CIVICRM_ENVIRONMENT: 'Development'
-        # Controls outbound SMTP behavior.'5' corresponds to redirect to database. '0' SMTP (AWS SES)
-        CIVI_SMTP_OUTBOUND_OPTION: '5'
-        # Disable cron by default. Enable Crons in production.
-        RUN_CRON: 'Off'
-        ERROR_REPORTING: 'Off'
-        DRUPAL_CONFIG_SPLIT_ENV: 'Development'
-        DRUPAL_ENVIRONMENT_INDICATOR_BGCOLOR: 'CA2C2C'
-        DRUPAL_ENVIRONMENT_INDICATOR_FGCOLOR: 'FFFFFF'
-        DRUPAL_ENVIRONMENT_INDICATOR_ENV: 'Dev'
-        # Change to '1' if SMTP server requires auth (AWS SES)
-        CIVI_SMTP_AUTH: '0'
-        CIVI_SMTP_PASSWORD: ''
-        CIVI_SMTP_PORT: '465'
-        CIVI_SMTP_SERVER: 'ssl://email-smtp.us-east-2.amazonaws.com'
-        CIVI_SMTP_USERNAME: ''
+
         CIVICRM_CRED_KEYS: ''
         CIVICRM_SIGN_KEYS: ''
         CIVICRM_SITE_KEY: ''
-        # Skvare's siteinfo module requires this secret in all environment. Must be unique for dev,staging and prod.
-        CIVICRM_EXT_SITEINFO_SECRET: ''
         # Upsun project ID. Needed to identify the project in automated tasks.
         PROJECT_ID: ''
-        # Authentication token for Composer repositories
+        # Authentication token for git repositories
         COMPOSER_AUTH: ''
-        # Enable or disable S3 backup. Default 'Off', can enable for production
-        S3_BACKUP: 'Off'
 
 # The relationships of the application with services or other applications.
 #
@@ -136,25 +113,10 @@ applications:
         # Code cannot be modified at this point but the database is available.
         # The site is not accepting requests while this script runs so keep it
         # fast.
-        
+
         #Move s3Backup to a script
         deploy: |
             set -e
-            if [ "$S3_BACKUP" = "On" ]; then
-              # Import private key
-              export GNUPGHOME=/tmp/gnupg
-              mkdir /tmp/gnupg
-              cd /tmp/gnupg
-
-              # Import public key 
-              echo "$GPG_PUBLIC_KEY" > /tmp/gnupg/public.key
-              gpg --batch --import /tmp/gnupg/public.key
-              # Add trust to public key
-              echo -e "trust\n5\ny\n" | gpg --command-fd 0 --edit-key "$GPG_KEY_ID"
-              echo "$GPG_KEY_PART1$GPG_KEY_PART2" > /tmp/gnupg/private.key
-              gpg --batch --import /tmp/gnupg/private.key
-            fi
-
             php ./drush/platformsh_generate_drush_yml.php
             # if drupal is installed, will call the following drush commands:
             #   - `cache-rebuild`
@@ -167,6 +129,7 @@ applications:
     web:
         locations:
             # All requests not otherwise specified follow these rules.
+            # Allow Mosaico HTML templates to be loaded.
             '/sites/default/civicrm/extensions':
                 root: 'web/sites/default/civicrm/extensions'
                 allow: true
@@ -240,41 +203,20 @@ applications:
         spec: '*/30 * * * *'
         commands:
           start: |
-            if [ "$RUN_CRON" = "Yes" ]; then
                 cd web
                 drush --name='Cron User' civicrm:api job.execute auth=0 --yes
-            fi
       job_process_mailing:
         spec: '*/5 * * * *'
         commands:
           start: |
-            if [ "$RUN_CRON" = "Yes" ]; then
                 cd web
                 drush --name='Cron User' civicrm:api job.process_mailing auth=0 --yes
-            fi
       drupal_cron:
         spec: '0 */1 * * *'
         commands:
           start: |
-            if [ "$RUN_CRON" = "Yes" ]; then
                 cd web
                 drush cron --yes
-            fi
-      backup:
-        spec: '* */30 * * *'
-        commands:
-          start: |
-            if [ "$S3_BACKUP" = "On" ]; then
-                PASSPHRASE="$GPG_PASSPHRASE" GNUPGHOME=/tmp/gnupg duplicity incremental  --encrypt-key "$GPG_KEY_ID" /app boto3+s3://$AWS_S3_BUCKET
-            fi
-      renewenv:
-        # Force a redeploy at 10 am (UTC) on the 1st and 15th of every month.
-        spec: '0 10 1,15 * *'
-        commands:
-          start: |
-            if [ "$PLATFORM_BRANCH" != "main" ]; then
-                platform redeploy --yes --no-wait
-            fi
     source:
       operations:
         auto-update:
@@ -299,12 +241,12 @@ services:
     configuration:
       properties:
         max_allowed_packet: 64
-        max_heap_table_size: 32      
+        max_heap_table_size: 32
         table_definition_cache: 2000
-        table_open_cache: 2000      
+        table_open_cache: 2000
         default_charset: utf8mb4
         default_collation: utf8mb4_unicode_ci
-        innodb_adaptive_hash_index: 0      
+        innodb_adaptive_hash_index: 0
         optimizer_use_condition_selectivity: 4
       schemas:
         - main

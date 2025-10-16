@@ -43,6 +43,7 @@
         "drupal/core-composer-scaffold": "^11.2",
         "drupal/core-project-message": "^11.2",
         "drupal/core-recommended": "^11.2",
+        "drupal/redis": "^1.10",
         "drupal/token": "^1.15",
         "drupal/webform": "^6.3",
         "drupal/webform_civicrm": "6.x-dev",
