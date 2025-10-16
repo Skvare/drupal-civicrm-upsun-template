@@ -1,0 +1,39 @@
+diff --git a/src/Command/CompileCommand.php b/src/Command/CompileCommand.php
+index 6dc3e71..2743364 100644
+--- a/src/Command/CompileCommand.php
++++ b/src/Command/CompileCommand.php
+@@ -51,7 +51,7 @@ class CompileCommand extends \Composer\Command\BaseCommand
+         parent::initialize($input, $output);
+     }
+ 
+-    protected function execute(InputInterface $input, OutputInterface $output)
++    protected function execute(InputInterface $input, OutputInterface $output): int
+     {
+         if ($output->isVerbose()) {
+             EnvHelper::set('COMPOSER_COMPILE_PASSTHRU', 'always');
+diff --git a/src/Command/CompileListCommand.php b/src/Command/CompileListCommand.php
+index 03f46a8..ac26bbc 100644
+--- a/src/Command/CompileListCommand.php
++++ b/src/Command/CompileListCommand.php
+@@ -23,7 +23,7 @@ class CompileListCommand extends \Composer\Command\BaseCommand
+         ;
+     }
+ 
+-    protected function execute(InputInterface $input, OutputInterface $output)
++    protected function execute(InputInterface $input, OutputInterface $output): int
+     {
+         $taskList = new TaskList($this->getComposer(), $this->getIO());
+         $taskList->load();
+diff --git a/src/Command/CompileWatchCommand.php b/src/Command/CompileWatchCommand.php
+index a150a6c..3594faf 100644
+--- a/src/Command/CompileWatchCommand.php
++++ b/src/Command/CompileWatchCommand.php
+@@ -27,7 +27,7 @@ class CompileWatchCommand extends \Composer\Command\BaseCommand
+         ;
+     }
+ 
+-    protected function execute(InputInterface $input, OutputInterface $output)
++    protected function execute(InputInterface $input, OutputInterface $output): int
+     {
+         if ($output->isVerbose()) {
+             EnvHelper::set('COMPOSER_COMPILE_PASSTHRU', 'always');

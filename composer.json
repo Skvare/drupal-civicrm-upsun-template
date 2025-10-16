@@ -1,6 +1,6 @@
 {
     "name": "drupal/drupal-civicrm-upsun-template",
-    "description": "Drupal 11 + CiviCRM 6.4 with Drupal integration modules composer template",
+    "description": "Drupal 11 + CiviCRM with Drupal integration modules composer template",
     "type": "project",
     "license": "GPL-2.0-or-later",
     "homepage": "https://skvare.com",
@@ -43,6 +43,7 @@
         "drupal/core-composer-scaffold": "^11.2",
         "drupal/core-project-message": "^11.2",
         "drupal/core-recommended": "^11.2",
+        "drupal/token": "^1.15",
         "drupal/webform": "^6.3",
         "drupal/webform_civicrm": "6.x-dev",
         "drush/drush": "^13.0@beta",
@@ -94,7 +95,9 @@
                 "type:drupal-core"
             ],
             "web/libraries/{$name}": [
-                "type:drupal-library"
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
             ],
             "web/modules/contrib/{$name}": [
                 "type:drupal-module"
@@ -116,9 +119,18 @@
             ],
             "web/themes/custom/{$name}": [
                 "type:drupal-custom-theme"
+            ],
+            "web/recipes/{$name}": [
+                "type:drupal-recipe"
             ]
         },
         "patches": {
+            "civicrm/composer-compile-plugin": {
+                "fix error": "./patches/composer-compile-plugin.patch"
+            },
+            "civicrm/civicrm-asset-plugin": {
+                "fix error": "./patches/civicrm-asset-plugin.patch"
+            },
             "drupal/webform": {
                 "drush fix": "https://www.drupal.org/files/issues/2024-05-07/3445590_3.patch"
             },

@@ -175,6 +175,17 @@ if ($platformsh->hasRelationship('redis') && !InstallerKernel::installationAttem
   ];
 }
 
+// Configure the default PhpStorage and Twig template cache directories.
+if (!isset($settings['php_storage']['default'])) {
+  //$settings['php_storage']['default']['directory'] = $settings['file_private_path'];
+  $settings['php_storage']['default']['directory'] = DRUPAL_ROOT . '/sites/default/php/';
+}
+
+if (!isset($settings['php_storage']['twig'])) {
+  //$settings['php_storage']['twig']['directory'] = $settings['file_private_path'];
+  $settings['php_storage']['twig']['directory'] = DRUPAL_ROOT . '/sites/default/php/';
+}
+
 if ($platformsh->inRuntime()) {
   // Configure private and temporary file paths.
   if (!isset($settings['file_private_path'])) {
@@ -183,20 +194,6 @@ if ($platformsh->inRuntime()) {
   if (!isset($settings['file_temp_path'])) {
     $settings['file_temp_path'] = $platformsh->appDir . '/tmp';
   }
-
-  // Configure the default PhpStorage and Twig template cache directories.
-  if (!isset($settings['php_storage']['default'])) {
-    //$settings['php_storage']['default']['directory'] = $settings['file_private_path'];
-    $settings['php_storage']['default']['directory'] = DRUPAL_ROOT . '/sites/default/php/';
-  }
-
-  if (!isset($settings['php_storage']['twig'])) {
-    //$settings['php_storage']['twig']['directory'] = $settings['file_private_path'];
-    $settings['php_storage']['twig']['directory'] = DRUPAL_ROOT . '/sites/default/php/';
-  }
-
-
-
   // Set the project-specific entropy value, used for generating one-time
   // keys and such.
   $settings['hash_salt'] = empty($settings['hash_salt']) ? $platformsh->projectEntropy : $settings['hash_salt'];

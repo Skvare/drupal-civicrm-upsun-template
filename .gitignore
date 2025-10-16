@@ -6,18 +6,18 @@
 /web/themes/contrib/
 /web/profiles/contrib/
 /web/libraries/
-
+/web/recipes/*
+!/web/recipes/custom/
+!/web/recipes/custom/**
+/recipes/
+/tmp
 /console/
+/drush-backups
 
 # Ignore sensitive information
 /web/sites/*/settings.local.php
-/web/sites/*/settings.php
 
-# Ignore config/sync
-# /config/sync
-
-# Standard Skvare gitignore entries:
-services*.php
+# CiviCRM
 /web/sites/*/civicrm/extensions/contrib/*
 !web/sites/*/civicrm/extensions/contrib/.gitkeep
 /web/sites/*/civicrm/extensions/cache/*
@@ -25,11 +25,11 @@ services*.php
 **/civicrm/upload/*
 **/civicrm/upload/.htaccess
 **/civicrm/ConfigAndLog/*
-/web/sites/default/php/
 
 # Ignore Drupal's file directory
 /web/sites/*/files/
 /private/
+/web/sites/default/php/
 
 # Ignore SimpleTest multi-site environment.
 /web/sites/simpletest
@@ -68,6 +68,7 @@ vagrant_ansible_inventory_default
 
 # Drupal VM specific files.
 local.config.yml
+local.behat.yml
 Vagrantfile.local
 /config.yml
 /docker-compose.yml
@@ -75,3 +76,4 @@ Vagrantfile.local
 /drupal/
 .editorconfig
 .gitattributes
+.twig-cs-fixer.cache

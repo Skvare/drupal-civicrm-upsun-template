@@ -649,7 +649,6 @@ $civicrm_setting['URL Preferences']['userFrameworkResourceURL'] = $site_uri . 'l
 $civicrm_setting['URL Preferences']['imageUploadURL'] = $site_uri . 'sites/default/files/civicrm/persist/contribute/';
 //$civicrm_setting['URL Preferences']['customCSSURL'] = '';
 $civicrm_setting['URL Preferences']['extensionsURL'] = $site_uri . 'sites/default/civicrm/extensions/';
-//$civicrm_setting['Extension Preferences']['ext_repo_url'] = false;
 
 if (isset($platformsh->branch)) {
   if ($platformsh->onProduction() || $platformsh->onDedicated()) {
@@ -660,16 +659,10 @@ if (isset($platformsh->branch)) {
   }
 }
 
-if (isset($_ENV['CIVICRM_ENVIRONMENT'])) {
+if (!empty($_ENV['CIVICRM_ENVIRONMENT'])) {
   $civicrm_setting['domain']['environment'] = $_ENV['CIVICRM_ENVIRONMENT'];
 }
 
-$civicrm_setting['CiviCRM Preferences']['communityMessagesUrl'] = false;
-$civicrm_setting['CiviCRM Preferences']['remote_profile_submissions'] = false;
-$civicrm_setting['CiviCRM Preferences']['versionAlert'] = false;
-$civicrm_setting['CiviCRM Preferences']['versionCheck'] = false;
-$civicrm_setting['CiviCRM Preferences']['securityUpdateAlert'] = false;
-$civicrm_setting['CiviCRM Preferences']['empoweredBy'] = false;
 
 $civicrm_paths['civicrm.root'] = array(
   'url' => $site_uri . 'libraries/civicrm/core/',
@@ -694,15 +687,7 @@ if (!defined('CIVICRM_CONFIGLOGDIR') ) {
   define('CIVICRM_CONFIGLOGDIR', $repo_root . '/web/sites/default/files/civicrm/ConfigAndLog/');
 }
 
-$civicrm_setting['CiviCRM Preferences']['enableSSL'] = getenv('ENABLE_SSL') ?? 0;
 
 // Smarty 5.
 define('CIVICRM_SMARTY_AUTOLOAD_PATH', $repo_root . '/vendor/civicrm/civicrm-packages/smarty5/Smarty.php');
 
-// SMTP settings
-$civicrm_setting['Mailing Preferences']['mailing_backend']['outBound_option'] = getenv('CIVI_SMTP_OUTBOUND_OPTION');
-$civicrm_setting['Mailing Preferences']['mailing_backend']['smtpServer']   = getenv('CIVI_SMTP_SERVER');
-$civicrm_setting['Mailing Preferences']['mailing_backend']['smtpPort']     = getenv('CIVI_SMTP_PORT');
-$civicrm_setting['Mailing Preferences']['mailing_backend']['smtpUsername'] = getenv('CIVI_SMTP_USERNAME');
-$civicrm_setting['Mailing Preferences']['mailing_backend']['smtpPassword'] = getenv('CIVI_SMTP_PASSWORD');
-$civicrm_setting['Mailing Preferences']['mailing_backend']['smtpAuth']     = getenv('CIVI_SMTP_AUTH');
