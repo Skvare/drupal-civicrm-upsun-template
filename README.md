@@ -1,8 +1,6 @@
-# Drupal 11 + CiviCRM Composer Template
+# Drupal 11 + CiviCRM + Upsun Composer Template
 
 Clone this repo.
-
-PHP 8.3 required
 
 ```composer install```
 
@@ -12,12 +10,26 @@ Install CiviCRM as per normal
 
 ## CiviCRM / Drupal ecosystem modules
 
-CiviCRM Entity
+### Skvare maintained Drupal CiviCRM integration modules
 
-CiviCRM Drush
+[CiviCRM Entity](https://drupal.org/project/civicrm_entity)
+[CiviCRM Drush](https://drupal.org/project/civicrm_drush)
+[CiviCRM Reroute Mail](https://drupal.org/project/civicrm_reroute_mail)
+[CiviCRM Form Builder Blocks](https://drupal.org/project/civicrm_form_builder_blocks)
 
-CiviCRM Reroute Mail
+### Other popular Drupal CiviCRM integration modules
 
-CiviCRM Form Builder Blocks
+[Webform CiviCRM](https://drupal.org/project/webform_civicrm)
 
-Webform CiviCRM
+## Upsun
+
+[Upsun Documentation](https://docs.upsun.com/get-started/here.html)
+
+## Skvare
+
+Need support? [Contact Skvare](https://skvare.com/contact)
+
+### Helping others help others
+
+We help mission-driven teams amplify their impact with expert website development, CRM configuration, and secure, reliable hosting.
+
