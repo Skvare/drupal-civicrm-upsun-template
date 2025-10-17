@@ -1,5 +1,5 @@
 {
-    "name": "drupal/drupal-civicrm-upsun-template",
+    "name": "skvare/drupal-civicrm-upsun-template",
     "description": "Drupal 11 + CiviCRM with Drupal integration modules composer template",
     "type": "project",
     "license": "GPL-2.0-or-later",
@@ -178,16 +178,14 @@
             ],
             "post-create-project-cmd-message": [
                 "<bg=blue;fg=white>                                                         </>",
-                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
-                "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal/CiviCRM codebase  </>",
                 "<bg=blue;fg=white>                                                         </>",
                 "",
                 "<bg=yellow;fg=black>Next steps</>:",
                 "  * Install the site: https://www.drupal.org/docs/installing-drupal",
-                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
-                "  * Get support: https://www.drupal.org/support",
-                "  * Get involved with the Drupal community:",
-                "      https://www.drupal.org/getting-involved",
+                "  * Read the Drupal user guide: https://www.drupal.org/docs/user_guide/en/index.html",
+                "  * Read the CiviCRM user guide: https://docs.civicrm.org/user/en/latest/",
+                "  * Get support: https://skvare.com/contact",
                 "  * Remove the plugin that prints this message:",
                 "      composer remove drupal/core-project-message"
             ]
