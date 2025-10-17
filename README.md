@@ -8,22 +8,28 @@ Install Drupal 11 as per normal
 
 Install CiviCRM as per normal
 
-## CiviCRM / Drupal ecosystem modules
+## Resources
+
+- [Drupal](https://www.drupal.org/docs/getting-started)
+- [CiviCRM User Guide](https://docs.civicrm.org/user/en/latest/)
+- [CiviCRM Developer Guide](https://docs.civicrm.org/dev/en/latest/)
 
 ### Skvare maintained Drupal CiviCRM integration modules
 
-[CiviCRM Entity](https://drupal.org/project/civicrm_entity)
-[CiviCRM Drush](https://drupal.org/project/civicrm_drush)
-[CiviCRM Reroute Mail](https://drupal.org/project/civicrm_reroute_mail)
-[CiviCRM Form Builder Blocks](https://drupal.org/project/civicrm_form_builder_blocks)
+- [CiviCRM Entity](https://drupal.org/project/civicrm_entity)
+- [CiviCRM Drush](https://drupal.org/project/civicrm_drush)
+- [CiviCRM Reroute Mail](https://drupal.org/project/civicrm_reroute_mail)
+- [CiviCRM Form Builder Blocks](https://drupal.org/project/civicrm_form_builder_blocks)
 
 ### Other popular Drupal CiviCRM integration modules
 
-[Webform CiviCRM](https://drupal.org/project/webform_civicrm)
+- [Webform CiviCRM](https://drupal.org/project/webform_civicrm)
 
 ## Upsun
 
-[Upsun Documentation](https://docs.upsun.com/get-started/here.html)
+- [Upsun Documentation](https://docs.upsun.com/get-started/here.html)
+
+Comprehensive Upsun configuration for Drupal and CiviCRM provided in this template. See .upsun/config.yml
 
 ## Skvare
 
