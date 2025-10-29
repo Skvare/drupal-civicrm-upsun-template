@@ -35,6 +35,7 @@
         "civicrm/cli-tools": "^2025.05",
         "composer/installers": "^2.2",
         "cweagans/composer-patches": "^1.7",
+        "drupal/admin_toolbar": "^3.6",
         "drupal/civicrm_drush": "^4.0@beta",
         "drupal/civicrm_entity": "4.0.x-dev",
         "drupal/civicrm_entity_leaflet": "^2",

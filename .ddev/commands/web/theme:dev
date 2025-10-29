@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+## Description: Build theme assets in development mode (one-time build)
+## Usage: theme:dev
+## Example: "ddev theme:dev"
+
+cd /var/www/html/web/themes/custom/skvare_custom_bootstrap
+echo "Building theme in development mode..."
+npm run build:dev
+echo "Theme build complete!"

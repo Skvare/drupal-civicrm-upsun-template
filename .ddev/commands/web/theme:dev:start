@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+## Description: Start theme build in watch mode (continuous development)
+## Usage: theme:dev:start
+## Example: "ddev theme:dev:start"
+
+cd /var/www/html/web/themes/custom/skvare_custom_bootstrap
+echo "Starting theme watch mode..."
+echo "Press Ctrl+C to stop watching"
+npm run start:dev
