@@ -48,7 +48,7 @@
         "drupal/token": "^1.15",
         "drupal/webform": "^6.3",
         "drupal/webform_civicrm": "6.x-dev",
-        "drush/drush": "^13.0@beta",
+        "drush/drush": "^13.6",
         "mglaman/composer-drupal-lenient": "^1.0",
         "platformsh/config-reader": "^3",
         "symfony/dotenv": "^7.3",

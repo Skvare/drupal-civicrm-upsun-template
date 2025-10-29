@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c75c996da662cddbb50bc21bcbc51eed",
+    "content-hash": "284607896f12038e688e6bdd27a7185d",
     "packages": [
         {
             "name": "adrienrn/php-mimetyper",
@@ -12074,8 +12074,7 @@
         "drupal/civicrm_drush": 10,
         "drupal/civicrm_entity": 20,
         "drupal/civicrm_form_builder_blocks": 15,
-        "drupal/webform_civicrm": 20,
-        "drush/drush": 10
+        "drupal/webform_civicrm": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
