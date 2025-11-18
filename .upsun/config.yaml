@@ -63,17 +63,17 @@ applications:
     mounts:
         # The default Drupal files directory.
         '/web/sites/default/files':
-            source: instance
+            source: storage
             source_path: 'files'
         # Drupal gets its own dedicated tmp directory. The settings.platformsh.php
         # file will automatically configure Drupal to use this directory.
         '/tmp':
-            source: instance
+            source: tmp
             source_path: 'tmp'
         # Private file uploads are stored outside the web root. The settings.platformsh.php
         # file will automatically configure Drupal to use this directory.
         '/private':
-            source: instance
+            source: storage
             source_path: 'private'
         # CiviCRM templates_c
         '/web/sites/default/civicrm/templates_c':
