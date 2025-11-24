@@ -217,6 +217,13 @@ applications:
           start: |
                 cd web
                 drush cron --yes
+      cleanup-drupal-backups:
+        spec: '0 3 * * *'
+        commands:
+          start: |
+            if [ "$RUN_CRON" = "Yes" ]; then
+              find /app/drush-backups/ -mindepth 1 -mtime +1 -exec rm -rf {} \;
+            fi
     source:
       operations:
         auto-update:
