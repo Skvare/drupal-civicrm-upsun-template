@@ -8,29 +8,31 @@ applications:
   drupal:
     type: 'composable:25.05'
     stack:
-      - php@8.3:
-          extensions:
-            - opcache
-            - redis
-            - sodium
-            - apcu
-            - blackfire
-            - imagick
-      - gnupg
-      - patch
-      - duplicity
-      - python3
-      - upsun
-      - python3Packages.numpy
-      - python3Packages.boto3
-      - php83Extensions.mbstring
-      - php83Extensions.iconv
-      - php83Extensions.redis
-      - php83Extensions.opcache
-      - php83Extensions.sodium
-      - php83Extensions.apcu
-      - php83Extensions.blackfire
-      - php83Extensions.imagick
+      runtimes:
+        - php@8.3:
+            extensions:
+              - opcache
+              - redis
+              - sodium
+              - apcu
+              - blackfire
+              - imagick
+      packages:
+        - gnupg
+        - patch
+        - duplicity
+        - python3
+        - upsun
+        - python3Packages.numpy
+        - python3Packages.boto3
+        - php83Extensions.mbstring
+        - php83Extensions.iconv
+        - php83Extensions.redis
+        - php83Extensions.opcache
+        - php83Extensions.sodium
+        - php83Extensions.apcu
+        - php83Extensions.blackfire
+        - php83Extensions.imagick
     variables:
       env:
         # Skip automatic config import
