@@ -28,10 +28,10 @@
     },
     "require": {
         "civicrm/civicrm-asset-plugin": "~1.1",
-        "civicrm/civicrm-core": "6.4.*",
-        "civicrm/civicrm-drupal-8": "6.4.*",
+        "civicrm/civicrm-core": "6.13.*",
+        "civicrm/civicrm-drupal-8": "6.13.*",
         "civicrm/civicrm-extension-plugin": "^1.0",
-        "civicrm/civicrm-packages": "6.4.*",
+        "civicrm/civicrm-packages": "6.13.*",
         "civicrm/cli-tools": "^2025.05",
         "composer/installers": "^2.2",
         "cweagans/composer-patches": "^1.7",
@@ -127,21 +127,12 @@
             ]
         },
         "patches": {
-            "civicrm/composer-compile-plugin": {
-                "fix error": "./patches/composer-compile-plugin.patch"
-            },
-            "civicrm/civicrm-asset-plugin": {
-                "fix error": "./patches/civicrm-asset-plugin.patch"
-            },
             "drupal/webform": {
                 "drush fix": "https://www.drupal.org/files/issues/2024-05-07/3445590_3.patch"
             },
             "civicrm/civicrm-drupal-8": {
-                "install patch": "./patches/install-civicrm-drupal-8.patch"
-            },
-            "civicrm/civicrm-core": {
-                "install core patch": "./patches/install-civicrm-core.patch"
-            }
+                "requirements deprecation patch": "https://patch-diff.githubusercontent.com/raw/civicrm/civicrm-drupal-8/pull/124.patch"
+           }
         },
         "merge-plugin": {
             "include": [
@@ -157,16 +148,16 @@
             "composer_exit_on_extensions_patch_failure": true,
             "extensions": {
                 "uk.co.vedaconsulting.mosaico": {
-                    "url": "https://download.civicrm.org/extension/uk.co.vedaconsulting.mosaico/3.8.1752072010/uk.co.vedaconsulting.mosaico-3.8.1752072010.zip"
+                    "url": "https://download.civicrm.org/extension/uk.co.vedaconsulting.mosaico/3.12.1773937815/uk.co.vedaconsulting.mosaico-3.12.1773937815.zip"
                 },
                 "org.civicrm.contactlayout": {
-                    "url": "https://lab.civicrm.org/extensions/contactlayout/-/archive/3.0.2/contactlayout-3.0.2.zip"
+                    "url": "https://lab.civicrm.org/extensions/contactlayout/-/archive/3.0.3/contactlayout-3.0.3.zip"
                 },
                 "org.civicrm.angularprofiles": {
                     "url": "https://lab.civicrm.org/extensions/angularprofiles/-/archive/6.2.4/angularprofiles-6.2.4.zip"
                 },
                 "org.civicrm.module.cividiscount": {
-                    "url": "https://lab.civicrm.org/extensions/cividiscount/-/archive/3.9.0/cividiscount-3.9.0.zip"
+                    "url": "https://lab.civicrm.org/extensions/cividiscount/-/archive/3.10.2/cividiscount-3.10.2.zip"
                 },
                 "com.skvare.mosaicomigration": {
                     "url": "https://github.com/Skvare/com.skvare.mosaicomigration/archive/refs/tags/1.4.zip"
