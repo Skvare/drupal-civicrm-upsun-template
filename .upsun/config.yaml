@@ -6,10 +6,10 @@
 # The name of this app. Must be unique within a project.
 applications:
   drupal:
-    type: 'composable:25.05'
+    type: 'composable:25.11'
     stack:
       runtimes:
-        - php@8.3:
+        - php@8.4:
             extensions:
               - opcache
               - redis
