@@ -150,7 +150,7 @@ applications:
                 # suffixed with "s" (seconds), "m" (minutes), "h" (hours), "d"
                 # (days), "w" (weeks), "M" (months, as 30 days) or "y" (years, as
                 # 365 days).
-                expires: 5m
+                expires: 300s
 
                 # Redirect any incoming request to Drupal's front controller.
                 passthru: '/index.php'
