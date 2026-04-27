@@ -44,7 +44,7 @@
         "drupal/core-composer-scaffold": "^11.2",
         "drupal/core-project-message": "^11.2",
         "drupal/core-recommended": "^11.2",
-        "drupal/redis": "^1.10",
+        "drupal/redis": "^1.11",
         "drupal/token": "^1.15",
         "drupal/webform": "^6.3",
         "drupal/webform_civicrm": "6.x-dev",
@@ -63,6 +63,9 @@
         "files": ["load.environment.php"]
     },
     "config": {
+        "audit": {
+            "block-insecure": false
+        },
         "autoloader-suffix": "Drupal8",
         "allow-plugins": {
             "civicrm/civicrm-asset-plugin": true,
