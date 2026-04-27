@@ -2,7 +2,7 @@ services:
   # Cache tag checksum backend. Used by redis and most other cache backend
   # to deal with cache tag invalidations.
   cache_tags.invalidator.checksum:
-    class: Drupaledis\Cache\RedisCacheTagsChecksum
+    class: Drupal\redis\Cache\RedisCacheTagsChecksum
     arguments: ['@redis.factory']
     tags:
       - { name: cache_tags_invalidator }
