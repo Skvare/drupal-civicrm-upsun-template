@@ -17,6 +17,7 @@ applications:
               - apcu
               - blackfire
               - imagick
+              - xml
       packages:
         - gnupg
         - patch
