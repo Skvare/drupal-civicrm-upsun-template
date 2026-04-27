@@ -17,7 +17,6 @@ applications:
               - apcu
               - blackfire
               - imagick
-              - xml
       packages:
         - gnupg
         - patch
@@ -26,14 +25,14 @@ applications:
         - upsun
         - python3Packages.numpy
         - python3Packages.boto3
-        - php83Extensions.mbstring
-        - php83Extensions.iconv
-        - php83Extensions.redis
-        - php83Extensions.opcache
-        - php83Extensions.sodium
-        - php83Extensions.apcu
-        - php83Extensions.blackfire
-        - php83Extensions.imagick
+        - php84Extensions.mbstring
+        - php84Extensions.iconv
+        - php84Extensions.redis
+        - php84Extensions.opcache
+        - php84Extensions.sodium
+        - php84Extensions.apcu
+        - php84Extensions.blackfire
+        - php84Extensions.imagick
     variables:
       env:
         # Skip automatic config import
