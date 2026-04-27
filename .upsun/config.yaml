@@ -17,6 +17,8 @@ applications:
               - apcu
               - blackfire
               - imagick
+              - dom
+              - xml
       packages:
         - gnupg
         - patch
@@ -33,6 +35,8 @@ applications:
         - php84Extensions.apcu
         - php84Extensions.blackfire
         - php84Extensions.imagick
+        - php84Extensions.xml
+        - php84Extensions.dom
     variables:
       env:
         # Skip automatic config import
