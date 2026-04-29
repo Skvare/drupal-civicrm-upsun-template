@@ -210,19 +210,19 @@ applications:
         commands:
           start: |
                 cd web
-                PHP_INI_SCAN_DIR="${PHP_INI_SCAN_DIR}:drush/ini" drush --name='Cron User' civicrm:api job.execute auth=0 --yes
+                PHP_INI_SCAN_DIR="/etc/php/8.4/cli/:drush/ini" drush --name='Cron User' civicrm:api job.execute auth=0 --yes
       job_process_mailing:
         spec: '*/5 * * * *'
         commands:
           start: |
                 cd web
-                PHP_INI_SCAN_DIR="${PHP_INI_SCAN_DIR}:drush/ini" drush --name='Cron User' civicrm:api job.process_mailing auth=0 --yes
+                PHP_INI_SCAN_DIR="/etc/php/8.4/cli/:drush/ini" drush --name='Cron User' civicrm:api job.process_mailing auth=0 --yes
       drupal_cron:
         spec: '0 */1 * * *'
         commands:
           start: |
                 cd web
-                PHP_INI_SCAN_DIR="${PHP_INI_SCAN_DIR}:drush/ini" drush cron --yes
+                PHP_INI_SCAN_DIR="/etc/php/8.4/cli/:drush/ini" drush cron --yes
       cleanup-drupal-backups:
         spec: '0 3 * * *'
         commands:
